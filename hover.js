@@ -12,10 +12,12 @@
     };
 
     this.mousePressOnEntity = function(entityId, mouseEvent) {
+        print("click");
         Entities.editEntity(entityId, { color: red });
     };
 
     this.mouseReleaseOnEntity = function(entityId, mouseEvent) {
+        print("lolwat");
         Entities.editEntity(entityId, { color: blue });
     };
 })
