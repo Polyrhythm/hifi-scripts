@@ -11,11 +11,11 @@
         blue: 50,
     };
 
-    this.holdingClickEntity = function(entityId, mouseEvent) {
+    this.mousePressOnEntity = function(entityId, mouseEvent) {
         Entities.editEntity(entityId, { color: red });
     };
 
-    this.clickReleaseEntity = function(entityId, mouseEvent) {
+    this.mouseReleaseOnEntity = function(entityId, mouseEvent) {
         Entities.editEntity(entityId, { color: blue });
     };
 })
