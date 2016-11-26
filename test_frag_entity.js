@@ -7,6 +7,7 @@
         }
     });
     this.mousePressOnEntity = function(id, evt) {
+       print("click");
        Entities.editEntity(id, { userData: newData }); 
     };
 })
