@@ -1,4 +1,3 @@
-// https://raw.githubusercontent.com/Polyrhythm/hifi-scripts/master/test_frag.fs
 (function() {
     this.userData = JSON.stringify({
         ProceduralEntity: {
