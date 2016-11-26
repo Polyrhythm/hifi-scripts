@@ -8,3 +8,5 @@ TestShader.prototype.USER_DATA = {
     }
 }
 
+return new TestShader();
+
