@@ -8,6 +8,6 @@ float getProceduralColors(inout vec3 diffuse, inout vec3 specular, inout float s
 
     diffuse = vec4(vec3(map, 1.0, 1.0), 1.0);
     
-    return 1.0;
+    return 0.0;
 }
 
