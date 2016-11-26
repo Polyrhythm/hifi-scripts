@@ -6,7 +6,7 @@ float getProceduralColors(inout vec3 diffuse, inout vec3 specular, inout float s
 
     float map = step(0.1, distance(p, vec2(0.0)));
 
-    diffuse = vec3(map, 1.0, 1.0);
+    diffuse = vec3(1.0, 1.0, map);
     
     return 0.0;
 }
