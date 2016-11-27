@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<head><title>hello</title></head>
+<body>
+<h1>
+float getProceduralColors(inout vec3 diffuse, inout vec3 specular, inout float shininess) { <br/>
+    vec2 uv = _position.xz / iResolution.xy; <br />
+    vec2 p = uv;<br />
+
+    p.x += sin(p.y + iGlobalTime * 3.0) * 0.1; <br />
+
+    vec3 colour = vec3(1.0); <br />
+
+    float map = step(0.1, distance(p, vec2(0.0))); <br />
+
+    diffuse = vec3(step(0.0, p.x)); <br />
+    
+    return 0.0; <br />
+}
+</h1>
+</body>
+</html>
