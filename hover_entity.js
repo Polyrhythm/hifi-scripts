@@ -1,49 +1,34 @@
 (function() {
-    var ORIG_SCALE = {
-        x: 0.4,
-        y: 0.4,
-        z: 0.4,
-    };
-    var MAX_DIMENSION = 0.6;
-    var newScale = ORIG_SCALE;
+    function TestEntity() {}
+    var time = 0;
+    var HOVER_SPEED = 0.001;
 
-    this.hoverOverEntity = function(id, evt) {
-        print("hello");
-        if (newScale.x >= MAX_DIMENSION) {
-            return;
-        }
-
-        newScale = {
-            x: newScale.x + 0.01,
-            y: newScale.y + 0.01,
-            z: newScale.z + 0.01,
-        };
-
-        Entities.editEntity(id, {
-            dimensions: newScale,
+    TestEntity.prototype.update = function(deltaTime) {
+        time += deltaTime;
+        var pos = Entities.getEntityProperties(this.entityId, ['position']).position;
+        Entities.editEntity(this.entityId, {
+            position: {
+                x: pos.x,
+                y: pos.y + Math.sin(time) * HOVER_SPEED,
+                z: pos.z,
+            },
+            color: {
+                red: Math.abs(Math.sin(time)) * 255,
+                green: 150,
+                blue: 150,
+            },
         });
     };
 
-    this.hoverLeaveEntity = function(id, evt) {
-        print("goodbye");
-        var loop; // interval declaration
-        function lerp() {
-            if (newScale.x <= ORIG_SCALE.x) {
-                Script.clearInterval(loop);
-                return;
-            }
+    TestEntity.prototype.preload = function(id) {
+        this.entityId = id;
 
-            newScale = {
-                x: newScale.x - 0.01,
-                y: newScale.y - 0.01,
-                z: newScale.z - 0.01,
-            };
-
-            Entities.editEntity({
-                dimensions: newScale,
-            });
-        }
-
-        loop = Script.setInterval(lerp, 0.1);
+        Script.update.connect(this, this.update);
     };
+
+    TestEntity.prototype.unload = function() {
+        Script.update.disconnect(this, this.update);
+    };
+
+    return new TestEntity();
 })
